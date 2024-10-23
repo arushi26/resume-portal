@@ -1,4 +1,4 @@
-package com.arushi.resume_portal;
+package com.arushi.resumeportal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

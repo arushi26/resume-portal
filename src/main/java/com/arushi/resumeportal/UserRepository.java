@@ -1,10 +1,13 @@
-package com.arushi.resume_portal;
+package com.arushi.resumeportal;
 
-import com.arushi.resume_portal.models.User;
+import com.arushi.resumeportal.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUserName(String userName);
+
+
 }

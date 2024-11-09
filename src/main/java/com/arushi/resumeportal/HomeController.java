@@ -61,11 +61,19 @@ public class HomeController {
         job1.setDesignation("Designation 1");
         job1.setStartDate(LocalDate.of(2020, 1, 12));
         job1.setEndDate(LocalDate.of(2023, 6, 4));
+        job1.getResponsibilities().clear();
+        job1.getResponsibilities().add("Developed theory of relativity");
+        job1.getResponsibilities().add("The mass–energy equivalence formula E = mc2, which arises from special relativity, has been called \"the world's most famous equation\"");
+
         Job job2 = new Job();
         job2.setCompany("Company 2");
         job2.setDesignation("Designation 2");
         job2.setStartDate(LocalDate.of(2023, 6, 7));
-        job2.setEndDate(LocalDate.of(2024, 5, 15));
+        job2.setCurrentJob(true);
+
+        job2.getResponsibilities().clear();
+        job2.getResponsibilities().add("Discovery of the law of the photoelectric effect, a pivotal step in the development of quantum theory.");
+        job2.getResponsibilities().add("Important contributions to statistical mechanics and quantum theory.");
 
         profile1.getJobs().clear();
         profile1.getJobs().addAll(List.of(job1, job2));
@@ -78,15 +86,24 @@ public class HomeController {
         UserProfile profile2 = profileOptional.get();
 
         job1 = new Job();
-        job1.setCompany("Company ~ 1");
-        job1.setDesignation("Designation ~ 1");
+        job1.setCompany("Trapp Family Choir");
+        job1.setDesignation("Singer");
         job1.setStartDate(LocalDate.of(2021, 4, 12));
         job1.setEndDate(LocalDate.of(2022, 6, 4));
+        job1.getResponsibilities().clear();
+        job1.getResponsibilities().add("Perform in the United States and Canada as Von Trapp Family Choir");
+        job1.getResponsibilities().add("Touring the world giving concert performances.");
+
         job2 = new Job();
         job2.setCompany("Company ~ 2");
         job2.setDesignation("Designation ~ 2");
         job2.setStartDate(LocalDate.of(2022, 6, 7));
-        job2.setEndDate(LocalDate.of(2024, 9, 15));
+        job2.setCurrentJob(true);
+
+        job2.getResponsibilities().clear();
+        job2.getResponsibilities().add("Wrote The Story of the Trapp Family Singers, which was published in 1949 and was the inspiration for the 1956 West German film The Trapp Family, which in turn inspired the 1959 Broadway musical The Sound of Music and its 1965 film version");
+        job2.getResponsibilities().add("After the war, founded the Trapp Family Austrian Relief fund, which sent food and clothing to the impoverished in Austria.");
+
 
         profile2.getJobs().clear();
         profile2.getJobs().addAll(List.of(job1, job2));

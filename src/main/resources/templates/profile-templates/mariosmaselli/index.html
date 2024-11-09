@@ -60,9 +60,9 @@
       		<li>Home</li>
       	</ul>
         <ul class="list-content ">
-        	<li>+34 123 456 789</li> <!-- YOUR PHONE NUMBER  -->
-        	<li>j.anderson@gmail.com</li> <!-- YOUR EMAIL -->
-        	<li><a href="#">janderson.com</a></li> <!-- YOUR WEBSITE  -->
+        	<li th:text="${userProfile.phone}">+34 123 456 789</li> <!-- YOUR PHONE NUMBER  -->
+        	<li th:text="${userProfile.email}">j.anderson@gmail.com</li> <!-- YOUR EMAIL -->
+        	<li><a href="#">website.com</a></li> <!-- YOUR WEBSITE  -->
         	<li>Los Angeles, CA</li> <!-- YOUR STATE AND COUNTRY  -->
         </ul>
       </div>

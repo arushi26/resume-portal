@@ -39,11 +39,11 @@
         
             <!-- Microformats! -->
         
-            <h1 class="fn" th:text="${userProfile.userName}">Name</h1>
+            <h1 class="fn" th:text="${userProfile.firstName} + ' ' + ${userProfile.lastName}">Name</h1>
         
             <p>
-                Cell: <span class="tel">555-666-7777</span><br />
-                Email: <a class="email" href="mailto:greatoldone@lovecraft.com">greatoldone@lovecraft.com</a>
+                Cell: <span class="tel" th:text="${userProfile.phone}">555-666-7777</span><br />
+                Email: <a class="email" th:text="${userProfile.email}">greatoldone@lovecraft.com</a>
             </p>
         </div>
                 
@@ -63,9 +63,9 @@
             
             <dt>Education</dt>
             <dd>
-                <h2>Withering Madness University - Planet Vhoorl</h2>
-                <p><strong>Major:</strong> Public Relations<br />
-                   <strong>Minor:</strong> Scale Tending</p>
+                <h2>University</h2>
+                <p><strong>Major:</strong> Course 1<br />
+                   <strong>Minor:</strong> Course 2</p>
             </dd>
             
             <dd class="clear"></dd>

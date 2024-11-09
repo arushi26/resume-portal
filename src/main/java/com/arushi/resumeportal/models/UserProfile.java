@@ -17,7 +17,6 @@ public class UserProfile {
     private String userName;
     private String theme;
     private String summary;
-
     private String firstName;
     private String lastName;
     private String email;

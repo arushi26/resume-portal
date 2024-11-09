@@ -55,6 +55,7 @@ public class HomeController {
         profile1.setUserName("mira");
         profile1.setFirstName("Mira");
         profile1.setLastName("Joshi");
+        profile1.setSummary("Mira Summary");
         profile1.setEmail("mira.joshi@abc.com");
         profile1.setPhone("343298");
         profile1.setDesignation("Software Developer");
@@ -77,6 +78,7 @@ public class HomeController {
         profile2.setUserName("aria");
         profile2.setFirstName("Aria");
         profile2.setLastName("Hans");
+        profile2.setSummary("Aria Summary");
         profile2.setEmail("aria.hans@abc.com");
         profile2.setPhone("683422");
         profile2.setDesignation("Software Developer");

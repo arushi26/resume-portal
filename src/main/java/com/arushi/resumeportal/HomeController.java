@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -78,6 +79,12 @@ public class HomeController {
         profile1.getJobs().clear();
         profile1.getJobs().addAll(List.of(job1, job2));
 
+        profile1.addSkills("Java",9);
+        profile1.addSkills("HTML / HTML5",7);
+        profile1.addSkills("Javascript",5);
+        profile1.addSkills("Python",7);
+        profile1.addSkills("Spring Boot",8);
+
         userProfileRepository.save(profile1);
 
         profileOptional = userProfileRepository.findByUserName("maria");
@@ -107,6 +114,9 @@ public class HomeController {
 
         profile2.getJobs().clear();
         profile2.getJobs().addAll(List.of(job1, job2));
+
+        profile2.addSkills("Vocal Control",9);
+        profile2.addSkills("Piano",6);
 
         userProfileRepository.save(profile2);
 

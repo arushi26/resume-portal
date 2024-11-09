@@ -72,11 +72,7 @@
             
             <dt>Skills</dt>
             <dd>
-                <h2>Office skills</h2>
-                <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
-                
-                <h2>Computer skills</h2>
-                <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
+                <p th:each="skill: ${userProfile.skills}"><span th:text="${skill.key}">Highly Skilled</span></p>
             </dd>
             
             <dd class="clear"></dd>

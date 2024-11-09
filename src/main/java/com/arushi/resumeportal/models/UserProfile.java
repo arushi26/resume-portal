@@ -3,8 +3,7 @@ package com.arushi.resumeportal.models;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table
@@ -22,6 +21,10 @@ public class UserProfile {
     private String email;
     private String phone;
     private String designation;
+
+    @ElementCollection
+    @CollectionTable(name="user_skills", joinColumns = @JoinColumn(name="user_profile_id"))
+    private final Map<String, Integer> skills = new HashMap<>();
 
     @OneToMany(cascade = CascadeType.ALL,
                 orphanRemoval = true)
@@ -106,5 +109,16 @@ public class UserProfile {
 
     public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
+    }
+
+    public Map<String, Integer> getSkills() {
+        return Collections.unmodifiableMap(skills);
+    }
+
+    public void addSkills(String skill, Integer ratingOutOfTen) {
+        if(ratingOutOfTen>10) ratingOutOfTen=10;
+        if(ratingOutOfTen<0) ratingOutOfTen=0;
+
+        this.skills.put(skill, ratingOutOfTen);
     }
 }

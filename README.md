@@ -14,7 +14,16 @@ spring.datasource.url, spring.datasource.username and spring.datasource.password
 
 ResumePortalApplication
 
+5. Load page "localhost:8080" to load test data
+
 ## Packages used:
 
 ### Spring Security
 For user login/logout functionality. 
+
+
+
+## URLs
+
+1. Load test data - localhost:8080
+2. User profile page - localhost:8080/view/{userName}

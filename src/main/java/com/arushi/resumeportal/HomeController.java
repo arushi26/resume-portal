@@ -8,10 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -36,7 +33,8 @@ public class HomeController {
     }
 
     @GetMapping("/edit")
-    public String edit(Principal principal, Model model) {
+    public String edit(Principal principal, Model model,
+                       @RequestParam(required = false) String add) {
         // Spring Security gives Principal object that tells us the currently logged in user
 
         String userId = principal.getName();
@@ -46,6 +44,9 @@ public class HomeController {
         userProfileOpt.orElseThrow(() -> new RuntimeException("Not found: " + userId));
 
         UserProfile userProfile = userProfileOpt.get();
+        if("job".equalsIgnoreCase(add)) {
+            userProfile.getJobs().add(new Job());
+        }
         model.addAttribute("userProfile", userProfile);
 
         return "profile-edit";

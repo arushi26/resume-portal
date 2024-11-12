@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -51,10 +52,24 @@ public class HomeController {
     }
 
     @PostMapping("/edit")
-    public String postEdit(Principal principal, Model model) {
-        String userId = principal.getName();
+    public String postEdit(Principal principal, Model model, @ModelAttribute UserProfile userProfile) {
+        String userName = principal.getName();
+
+        Optional<UserProfile> userProfileOpt = userProfileRepository.findByUserName(userName);
+        userProfileOpt.orElseThrow(() -> new RuntimeException("Not found: " + userName));
+
+        UserProfile savedUserProfile = userProfileOpt.get();
+        // Save fields not in Edit form that should not be erased
+        userProfile.setId(savedUserProfile.getId());
+        userProfile.setUserName(userName);
+        userProfile.setDesignation(savedUserProfile.getDesignation());
+
+        for(Map.Entry<String, Integer> skill : savedUserProfile.getSkills().entrySet()) {
+            userProfile.addSkills(skill.getKey(), skill.getValue());
+        }
         // save updated values
-        return "redirect:/view/" + userId;
+        userProfileRepository.save(userProfile);
+        return "redirect:/view/" + userName;
     }
 
     @GetMapping("/view/{id}")

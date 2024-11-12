@@ -14,23 +14,30 @@
 
         <div class="form-group">
             <label class="form-label">First Name</label>
-            <input class="form-control" th:field="*{firstName}">
+            <input class="form-control" th:field="*{firstName}"/>
         </div>
         <div class="form-group">
             <label class="form-label">Last Name</label>
-            <input class="form-control" th:field="*{lastName}">
+            <input class="form-control" th:field="*{lastName}"/>
         </div>
         <div class="form-group">
             <label class="form-label">Email</label>
-            <input class="form-control" th:field="*{email}">
+            <input class="form-control" th:field="*{email}"/>
         </div>
         <div class="form-group">
             <label class="form-label">Phone</label>
-            <input class="form-control" th:field="*{phone}">
+            <input class="form-control" th:field="*{phone}"/>
         </div>
         <div class="form-group">
             <label class="form-label">Summary</label>
-            <input class="form-control" th:field="*{summary}">
+            <textarea class="form-control" th:field="*{summary}"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Select your Profile theme</label>
+            <select class="form-control" th:field="*{theme}">
+                <option th:value="'mariosmaselli'" th:text="'Theme 1'"></option>
+                <option th:value="'onepageresume'" th:text="'Theme 2'"></option>
+            </select>
         </div>
 
         <h3>Experience</h3>
@@ -39,6 +46,7 @@
             <tr>
                 <th>Company</th>
                 <th>Designation</th>
+                <th>Responsibilities</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Current Job?</th>
@@ -49,6 +57,7 @@
                 <!--                <p th:text="*{jobs[__${stat.index}__]}"></p>-->
                 <td><input class="form-control" th:field="*{jobs[__${stat.index}__].company}"/></td>
                 <td><input class="form-control" th:field="*{jobs[__${stat.index}__].designation}"/></td>
+                <td><input class="form-control" th:field="*{jobs[__${stat.index}__].responsibilities}"/></td>
                 <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"/></td>
                 <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"/></td>
                 <td><input type="checkbox" class="form-check-input" th:field="*{jobs[__${stat.index}__].currentJob}"/>

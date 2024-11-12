@@ -25,5 +25,7 @@ For user login/logout functionality.
 
 ## URLs
 
-1. Load test data - localhost:8080
-2. User profile page - localhost:8080/view/{userName}
+1. Login - localhost:{port}/login
+2. Load test data - localhost:{port}
+3. User profile page - localhost:{port}/view/{userName}
+4. User profile edit page - localhost:{port}/edit

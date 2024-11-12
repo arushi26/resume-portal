@@ -1,1 +1,8 @@
-<html>Hello! <br/> <a href='/logout'>Logout</a></html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">Hello!
+<span sec:authentication="principal.username"></span>
+
+<br/> <a href='/edit'>Edit</a>
+<br/>
+<br/> <a href='/logout'>Logout</a>
+
+</html>

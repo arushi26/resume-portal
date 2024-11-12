@@ -23,11 +23,9 @@ public class MyUserDetailsService implements UserDetailsService {
         /* Override method to fetch User details from our own Database */
         Optional<User> user = userRepository.findByUserName(userName);
 
-//        user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
 
         /* Convert user into a custom User Details class */
         return user.map(MyUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
-                //.get();
     }
 }

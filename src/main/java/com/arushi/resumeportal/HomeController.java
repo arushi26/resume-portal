@@ -3,11 +3,16 @@ package com.arushi.resumeportal;
 import com.arushi.resumeportal.models.Job;
 import com.arushi.resumeportal.models.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +22,11 @@ import java.util.Optional;
 @Controller
 public class HomeController {
 
-    @Autowired
     UserProfileRepository userProfileRepository;
+
+    public HomeController(UserProfileRepository userProfileRepository) {
+        this.userProfileRepository = userProfileRepository;
+    }
 
     @GetMapping("/")
     public String home() {
@@ -26,15 +34,31 @@ public class HomeController {
         return "hello";
     }
 
-//    @GetMapping("/edit")
-//    public String edit() {
-//        return "edit page";
-//    }
+    @GetMapping("/edit")
+    public String edit(Principal principal, Model model) {
+        // Spring Security gives Principal object that tells us the currently logged in user
+
+        String userId = principal.getName();
+        model.addAttribute("userId", userId);
+
+        Optional<UserProfile> userProfileOpt = userProfileRepository.findByUserName(userId);
+        userProfileOpt.orElseThrow(() -> new RuntimeException("Not found: " + userId));
+
+        UserProfile userProfile = userProfileOpt.get();
+        model.addAttribute("userProfile", userProfile);
+
+        return "profile-edit";
+    }
+
+    @PostMapping("/edit")
+    public String postEdit(Principal principal, Model model) {
+        String userId = principal.getName();
+        // save updated values
+        return "redirect:/view/" + userId;
+    }
 
     @GetMapping("/view/{id}")
     public String view(@PathVariable("id") String userId, Model model) {
-
-//        return "profile-templates/mariosmaselli/index";
 
         Optional<UserProfile> userProfileOpt = userProfileRepository.findByUserName(userId);
 
@@ -46,7 +70,6 @@ public class HomeController {
         model.addAttribute("userProfile", userProfile);
         return String.format("profile-templates/%s/index", userProfile.getTheme());
     }
-
 
 
     private void createTestData() {
@@ -79,11 +102,11 @@ public class HomeController {
         profile1.getJobs().clear();
         profile1.getJobs().addAll(List.of(job1, job2));
 
-        profile1.addSkills("Java",9);
-        profile1.addSkills("HTML / HTML5",7);
-        profile1.addSkills("Javascript",5);
-        profile1.addSkills("Python",7);
-        profile1.addSkills("Spring Boot",8);
+        profile1.addSkills("Java", 9);
+        profile1.addSkills("HTML / HTML5", 7);
+        profile1.addSkills("Javascript", 5);
+        profile1.addSkills("Python", 7);
+        profile1.addSkills("Spring Boot", 8);
 
         userProfileRepository.save(profile1);
 
@@ -115,8 +138,8 @@ public class HomeController {
         profile2.getJobs().clear();
         profile2.getJobs().addAll(List.of(job1, job2));
 
-        profile2.addSkills("Vocal Control",9);
-        profile2.addSkills("Piano",6);
+        profile2.addSkills("Vocal Control", 9);
+        profile2.addSkills("Piano", 6);
 
         userProfileRepository.save(profile2);
 

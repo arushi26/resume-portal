@@ -33,6 +33,32 @@
             <input class="form-control" th:field="*{summary}">
         </div>
 
+        <h3>Experience</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Company</th>
+                <th>Designation</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Current Job?</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="job, stat : *{jobs}">
+                <!--                <p th:text="*{jobs[__${stat.index}__]}"></p>-->
+                <td><input class="form-control" th:field="*{jobs[__${stat.index}__].company}"/></td>
+                <td><input class="form-control" th:field="*{jobs[__${stat.index}__].designation}"/></td>
+                <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"/></td>
+                <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"/></td>
+                <td><input type="checkbox" class="form-check-input" th:field="*{jobs[__${stat.index}__].currentJob}"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <input type="submit" value="Submit"/>
+
     </form>
 </div>
 

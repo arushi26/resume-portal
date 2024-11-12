@@ -98,7 +98,7 @@
                         <div class="experience-title" th:text="${job.company}">Company name</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
                         <div class="time">
                             <span th:text="${job.formattedStartDate}">Nov 2012</span> -
-                            <span th:text="${job.isCurrentJob} ? 'Present' : ${job.formattedEndDate}">Present</span>
+                            <span th:text="${job.currentJob} ? 'Present' : ${job.formattedEndDate}">Present</span>
                         </div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
                     </div>
 

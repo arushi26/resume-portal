@@ -79,7 +79,7 @@
             
             <dt>Experience</dt>
             <dd th:each="job: ${userProfile.jobs}">
-                <h2><span th:text="${job.company}">Company</span> <span id="designation" th:text="${job.designation} + ' - ' +  ${job.formattedStartDate} + '-' + (${job.isCurrentJob} ? 'Present' : ${job.formattedEndDate})">Designation - Baton Rogue, LA - 1926-2010</span></h2>
+                <h2><span th:text="${job.company}">Company</span> <span id="designation" th:text="${job.designation} + ' - ' +  ${job.formattedStartDate} + '-' + (${job.currentJob} ? 'Present' : ${job.formattedEndDate})">Designation - Baton Rogue, LA - 1926-2010</span></h2>
                 <ul th:each="responsibility: ${job.responsibilities}">
                     <li th:text="${responsibility}">Responsibility</li>
                 </ul>

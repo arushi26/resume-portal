@@ -1,10 +1,10 @@
 package com.arushi.resumeportal.models;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +18,13 @@ public class Job {
 
     private String company;
     private String designation;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    private boolean isCurrentJob;
+    private boolean currentJob;
 
     @ElementCollection(targetClass = String.class)
     private List<String> responsibilities = new ArrayList<>();
@@ -74,12 +76,10 @@ public class Job {
         this.responsibilities = responsibilities;
     }
 
-    public boolean isCurrentJob() {
-        return isCurrentJob;
-    }
+    public boolean getCurrentJob() { return currentJob;  }
 
     public void setCurrentJob(boolean currentJob) {
-        isCurrentJob = currentJob;
+        this.currentJob = currentJob;
     }
 
     public String getFormattedStartDate() {
@@ -88,5 +88,18 @@ public class Job {
 
     public String getFormattedEndDate() {
         return endDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", company='" + company + '\'' +
+                ", designation='" + designation + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", currentJob=" + currentJob +
+                ", responsibilities=" + responsibilities +
+                '}';
     }
 }

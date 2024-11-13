@@ -44,12 +44,34 @@ public class HomeController {
         userProfileOpt.orElseThrow(() -> new RuntimeException("Not found: " + userId));
 
         UserProfile userProfile = userProfileOpt.get();
-        if("job".equalsIgnoreCase(add)) {
+        if ("job".equalsIgnoreCase(add)) {
             userProfile.getJobs().add(new Job());
         }
         model.addAttribute("userProfile", userProfile);
 
         return "profile-edit";
+    }
+
+
+    @GetMapping("/delete")
+    public String delete(Principal principal, Model model,
+                         @RequestParam String type, @RequestParam int index) {
+        // Spring Security gives Principal object that tells us the currently logged in user
+        // Spring Security gives Principal object that tells us the currently logged in user
+
+        String userId = principal.getName();
+        model.addAttribute("userId", userId);
+
+        Optional<UserProfile> userProfileOpt = userProfileRepository.findByUserName(userId);
+        userProfileOpt.orElseThrow(() -> new RuntimeException("Not found: " + userId));
+
+        UserProfile userProfile = userProfileOpt.get();
+        if ("job".equalsIgnoreCase(type)) {
+            userProfile.getJobs().remove(index);
+        }
+
+        userProfileRepository.save(userProfile);
+        return "redirect:/edit";
     }
 
     @PostMapping("/edit")
@@ -65,7 +87,7 @@ public class HomeController {
         userProfile.setUserName(userName);
         userProfile.setDesignation(savedUserProfile.getDesignation());
 
-        for(Map.Entry<String, Integer> skill : savedUserProfile.getSkills().entrySet()) {
+        for (Map.Entry<String, Integer> skill : savedUserProfile.getSkills().entrySet()) {
             userProfile.addSkills(skill.getKey(), skill.getValue());
         }
         // save updated values

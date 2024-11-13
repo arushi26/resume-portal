@@ -50,6 +50,7 @@
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Current Job?</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -60,8 +61,8 @@
                 <td><input class="form-control" th:field="*{jobs[__${stat.index}__].responsibilities}"/></td>
                 <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"/></td>
                 <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"/></td>
-                <td><input type="checkbox" class="form-check-input" th:field="*{jobs[__${stat.index}__].currentJob}"/>
-                </td>
+                <td><input type="checkbox" class="form-check-input" th:field="*{jobs[__${stat.index}__].currentJob}"/></td>
+                <td><a th:href="@{'./delete?type=job&index='+ ${stat.index}}">Delete</a></td>
             </tr>
             </tbody>
         </table>

@@ -1,5 +1,16 @@
 # resume-portal
 
+This is a sample application written to practice coding with Spring Boot & Spring Security. Incomplete features.
+Database is in-memory. Test Data loaded at home page
+
+## URLs
+
+1. Login - localhost:{port}/login
+2. Load test data - localhost:{port}
+3. User profile page - localhost:{port}/view/{userName}
+4. User profile edit page - localhost:{port}/edit
+
+
 ## Steps to run the code:
 
 1. Clone the repo
@@ -20,12 +31,3 @@ ResumePortalApplication
 
 ### Spring Security
 For user login/logout functionality. 
-
-
-
-## URLs
-
-1. Login - localhost:{port}/login
-2. Load test data - localhost:{port}
-3. User profile page - localhost:{port}/view/{userName}
-4. User profile edit page - localhost:{port}/edit

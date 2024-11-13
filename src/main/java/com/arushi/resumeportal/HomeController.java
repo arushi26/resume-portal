@@ -96,7 +96,14 @@ public class HomeController {
     }
 
     @GetMapping("/view/{id}")
-    public String view(@PathVariable("id") String userId, Model model) {
+    public String view(Principal principal, @PathVariable("id") String userId, Model model) {
+
+        boolean currentUsersProfile = false;
+
+        if(principal!=null && principal.getName()!=null) {
+            currentUsersProfile = principal.getName().equals(userId);
+        }
+        model.addAttribute("currentUsersProfile", currentUsersProfile);
 
         Optional<UserProfile> userProfileOpt = userProfileRepository.findByUserName(userId);
 

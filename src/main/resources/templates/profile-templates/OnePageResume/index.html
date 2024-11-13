@@ -38,7 +38,8 @@
             <!-- Microformats! -->
         
             <h1 class="fn" th:text="${userProfile.firstName} + ' ' + ${userProfile.lastName}">Name</h1>
-        
+
+            <p th:if="${currentUsersProfile}"><a href="/edit">Edit Profile</a></p>
             <p>
                 Cell: <span class="tel" th:text="${userProfile.phone}">555-666-7777</span><br />
                 Email: <a class="email" th:text="${userProfile.email}">greatoldone@lovecraft.com</a>
@@ -47,10 +48,7 @@
                 
         <div id="objective">
             <p th:text="${userProfile.summary}">
-                I am an outgoing and energetic (ask anybody) young professional, seeking a 
-                career that fits my professional skills, personality, and murderous tendencies. 
-                My squid-like head is a masterful problem solver and inspires fear in who gaze upon it. 
-                I can bring world domination to your organization. 
+                I am an outgoing and energetic professional career that fits my professional skills.
             </p>
         </div>
         

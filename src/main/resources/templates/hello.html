@@ -1,8 +1,16 @@
-<html xmlns:sec="http://www.w3.org/1999/xhtml">Hello!
-<span sec:authentication="principal.username"></span>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Portal</title>
+</head>
+<body>
+<h1>Resume Portal</h1>
+<br/>
+<h2>Hello! <span sec:authentication="principal.username"></span>
+</h2>
 
-<br/> <a href='/edit'>Edit</a>
+<br/> <a href='/edit'>Edit your profile</a>
 <br/>
 <br/> <a href='/logout'>Logout</a>
-
+</body>
 </html>
